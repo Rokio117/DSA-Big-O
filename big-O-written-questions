@@ -1,0 +1,208 @@
+Dog question
+
+1. What kind of search? 
+2. Do I have to ask each person or do I know who it is? I.E. do I need to map through or can I find it right away? 
+
+If I can find them right off the bat it would be array.find and O(1) else O(n)
+functionFindPerson(array){
+  const person = 'Greg'
+  for(let i = 1; i< array.length, i++){
+    if array[i] ==="Greg"
+    return console.log('Found you!')
+  }
+}
+
+or functionFindPerson(array){
+  return array.find(person=> person==="Greg")
+}
+loops through each person until person is found. Best case is array[0], worst is array.length 
+I think this would be O(n) since the time will go up directly proportional to the length of the array
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+Dog question 2
+
+1.What kind of search have to first select player then ask about dog.
+
+forEach(player)does(dog.breed="golden")
+player object : {name:"Greg",dogBreed:"golden"}
+functionFindPerson(array){
+  const dogBreed = "golden"
+  for(let i = 0, i<= array.length; i++){
+    if(array[i].dogBreed === "golden){
+      return console.log("found you!)
+    }
+  }
+}
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+Even or Odd
+
+function isEven(value) {
+    if (value % 2 == 0) {
+        return true;
+    }
+    else
+        return false;
+    }
+}
+
+Since this only ever sends an individual value, and has no forEach or mapping, it would be O(1). No matter the value the time will be the same
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+Are you here?
+
+This has a loop inside a loop, therefore would be O(n^2)
+
+function areYouHere(arr1, arr2) {
+    for (let i = 0; i < arr1.length; i++) {
+        const el1 = arr1[i];
+        for (let j = 0; j < arr2.length; j++) {
+            const el2 = arr2[j];
+            if (el1 === el2) return true;
+        }
+    }
+    return false;
+}
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+Doubler.
+
+This contains only one loop with one constant time(?) therefore this is O(n)
+
+function doubleArrayValues(array) {
+    for (let i = 0; i < array.length; i++) {
+        array[i] *= 2; //multiplies array[i] by 2 then sets array[i] equal to the result
+    }
+    return array;
+}
+
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+Naive search 
+
+This contains only one loop so sould be O(n)
+
+function naiveSearch(array, item) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] === item) {
+            return i;
+        }
+    }
+}
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+Creating pairs 
+
+This is a loop with one nested loop so O(n^2)
+
+function createPairs(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        for(let j = i + 1; j < arr.length; j++) {
+            console.log(arr[i] + ", " +  arr[j] );
+        }
+    }
+}
+
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+Compujte the sequence
+
+What does it do: counts up by odd numbers for the length of the given numbers
+Runtime complexity: O(n) since only 1 loop
+
+thoughts:[
+  0 and 1 will be on list no matter What
+  then 1, then 3, then 5, then 7, then 9
+  else statement adds number to 
+]
+
+function compute(num) {
+    let result = [];
+    for (let i = 1; i <= num; i++) {
+
+        if (i === 1) {
+            result.push(0);
+        }
+        else if (i == 2) {
+            result.push(1);
+        }
+        else {
+            result.push(result[i - 2] + result[i - 3]);
+        }
+    }
+    return result;
+}
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+An efficient search
+
+Array is always sorted(does this matter?, 
+yes because it it wasn't we would have to check every single number every time)
+
+Big O is O(log(n)) Each time this runs it reduces its possible outcomes by half, 
+therefore giving it a O(log(n))
+
+function efficientSearch(array, item) {
+    let minIndex = 0;
+    let maxIndex = array.length - 1;
+    let currentIndex;
+    let currentElement;
+
+    while (minIndex <= maxIndex) {
+        currentIndex = Math.floor((minIndex + maxIndex) / 2);
+        currentElement = array[currentIndex];
+
+        if (currentElement < item) {
+            minIndex = currentIndex + 1;
+        }
+        else if (currentElement > item) {
+            maxIndex = currentIndex - 1;
+        }
+        else {
+            return currentIndex;
+        }
+    }
+    return -1;
+}
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+Random Element
+
+Big O is O(1). It does not need to loop through the array, it only uses its length which is about
+constant time only
+
+function findRandomElement(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+What Am I?
+As far as I can tell this will always return false since n % 1 will never equal 0
+Big O is O(1) considering the for loop will never run
+function isWhat(n) {
+    if (n < 2 || n % 1 != 0) {
+        return false;
+    }
+    for (let i = 2; i < n; ++i) {
+        if (n % i == 0) return false;
+    }
+    return true;
+}
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+Tower of Hanoi(recursive)
+
